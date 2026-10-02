@@ -1,6 +1,7 @@
 import SubjectCard from './SubjectCard'
 import AttendanceCard from './AttendanceCard'
 import TaskCard from './TaskCard'
+import './Dashboard.css'
 
 function StudentInfo(props) {
   return (
@@ -22,9 +23,11 @@ function Dashboard(props) {
         semester={props.semester}
       />
 
-      <SubjectCard total={6} />
-      <AttendanceCard percentage={82} />
-      <TaskCard pending={3} />
+      <div className="dashboard-cards">
+        <SubjectCard total={6} />
+        <AttendanceCard percentage={82} />
+        <TaskCard pending={3} />
+      </div>
     </div>
   )
 }
