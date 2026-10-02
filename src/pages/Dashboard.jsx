@@ -1,6 +1,6 @@
-import SubjectCard from './SubjectCard'
-import AttendanceCard from './AttendanceCard'
-import TaskCard from './TaskCard'
+import SubjectCard from '../components/SubjectCard'
+import AttendanceCard from '../components/AttendanceCard'
+import TaskCard from '../components/TaskCard'
 import './Dashboard.css'
 
 function StudentInfo(props) {
