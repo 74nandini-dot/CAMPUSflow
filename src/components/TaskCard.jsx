@@ -1,10 +1,12 @@
-function TaskCard(props) {
+
+function TaskCard({ title, subject, dueDate }) {
   return (
-    <div>
-      <h2>📝 Tasks</h2>
-      <p>Pending Tasks: {props.pending}</p>
+    <div className="task-card">
+      <h3>{title}</h3>
+      <p>{subject}</p>
+      <span>Due: {dueDate}</span>
     </div>
-  )
+  );
 }
 
-export default TaskCard
+export default TaskCard;

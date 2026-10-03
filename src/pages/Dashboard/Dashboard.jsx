@@ -1,50 +1,9 @@
-// import SubjectCard from '../../components/SubjectCard'
-// import AttendanceCard from '../../components/AttendanceCard'
-// import TaskCard from '../../components/TaskCard'
-// import './Dashboard.css'
-
-// function StudentInfo(props) {
-//   return (
-//     <div>
-//       <p>Student: {props.name}</p>
-//       <p>Semester: {props.semester}</p>
-//     </div>
-//   )
-// }
-
-// function Dashboard(props) {
-//   return (
-//     <div>
-//       <h1>CampusFlow Dashboard</h1>
-//       <p>Welcome to your student dashboard.</p>
-
-//       <StudentInfo
-//         name={props.name}
-//         semester={props.semester}
-//       />
-
-//       <div className="dashboard-cards">
-//         <SubjectCard total={6} />
-//         <AttendanceCard percentage={82} />
-//         <TaskCard pending={3} />
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Dashboard
-// function Dashboard() {
-//   return (
-//     <div className="dashboard">
-//       <h1>Dashboard</h1>
-//     </div>
-//   );
-// }
-
-// export default Dashboard;
 import "./Dashboard.css";
+import TaskCard from "../../components/TaskCard";
 import DashboardHeader from "../../components/Dashboard/DashboardHeader/DashboardHeader";
-import StatCard from "../../components/Dashboard/StatCard/StatCard";
+import StatCard from "../../components/StatCard/StatCard";
+import SubjectCard from "../../components/SubjectCard";
+import AttendanceCard from "../../components/AttendanceCard";
 
 
 function Dashboard() {
@@ -61,6 +20,78 @@ function Dashboard() {
         <StatCard number="5" title="Pending" />
         <StatCard number="3" title="Due Soon" />
       </section>
+
+
+      <section className="upcoming-tasks">
+      <h2>Upcoming Tasks</h2>
+
+      <div className="task-list">
+        <TaskCard
+          title="DSA Assignment"
+          subject="Data Structures"
+          dueDate="Tomorrow"
+        />
+
+        <TaskCard
+          title="Cloud Computing Notes"
+          subject="Cloud Computing"
+          dueDate="Oct 5"
+        />
+
+        <TaskCard
+          title="React Project"
+          subject="Web Development"
+          dueDate="Oct 7"
+        />
+       </div>
+      </section>
+
+               {/* subjects */}
+         <section className="subjects">
+          <h2>Your Subjects</h2>
+
+          <div className="subject-list">
+            <SubjectCard
+              name="Data Structures"
+              teacher="Dr. Sharma"
+              attendance={82}
+            />
+
+            <SubjectCard
+              name="Cloud Computing"
+              teacher="Prof. Verma"
+              attendance={76}
+            />
+
+            <SubjectCard
+              name="Machine Learning"
+              teacher="Dr. Patel"
+              attendance={89}
+            />
+          </div>
+        </section>
+
+          {/* Attendance */}
+        <section className="attendance">
+          <h2>Attendance Overview</h2>
+
+          <div className="attendance-list">
+            <AttendanceCard
+              subject="Data Structures"
+              percentage={82}
+            />
+
+            <AttendanceCard
+              subject="Cloud Computing"
+              percentage={76}
+            />
+
+            <AttendanceCard
+              subject="Machine Learning"
+              percentage={89}
+            />
+          </div>
+        </section>
 
     </div>
   );
