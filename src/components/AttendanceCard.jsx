@@ -1,10 +1,11 @@
-function AttendanceCard(props) {
+function AttendanceCard({ subject, percentage }) {
   return (
-    <div>
-      <h2>📊 Attendance</h2>
-      <p>Current Attendance: {props.percentage}%</p>
+    <div className="attendance-card">
+      <h3>{subject}</h3>
+      <p>Attendance</p>
+      <strong>{percentage}%</strong>
     </div>
-  )
+  );
 }
 
-export default AttendanceCard
+export default AttendanceCard;
