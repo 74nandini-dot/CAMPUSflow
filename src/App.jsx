@@ -1,3 +1,4 @@
+import Tasks from './pages/Tasks'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard/Dashboard'
@@ -17,6 +18,11 @@ function App() {
         <Route
           path="/subjects"
           element={<Subjects />}
+        />
+
+        <Route
+          path="/tasks"
+          element={<Tasks />}
         />
       </Routes>
     </BrowserRouter>
