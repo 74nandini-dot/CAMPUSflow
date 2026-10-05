@@ -187,3 +187,10 @@
     grid-template-columns: 1fr;
   }
 }
+.task-card.completed {
+  border-left: 4px solid #22c55e;
+}
+
+.task-card.pending {
+  border-left: 4px solid #f59e0b;
+}
