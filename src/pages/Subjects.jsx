@@ -1,29 +1,174 @@
+import { useState } from "react";
+import "./Subjects.css";
+const subjects = [
+  {
+    id: 1,
+    name: "Data Structures",
+    code: "DSA",
+  },
+  {
+    id: 2,
+    name: "Java Programming",
+    code: "OOPS",
+  },
+  {
+    id: 3,
+    name: "Digital Logic Design",
+    code: "DLD",
+  },
+  {
+    id: 4,
+    name: "Mathematics",
+    code: "Mathematics",
+  },
+];
 function Subjects() {
+  const [subjectList, setSubjectList] = useState(subjects);
+
+  const [newSubject, setNewSubject] = useState({
+  name: "",
+  code: "",
+  });
+
+  const [showForm, setShowForm] = useState(false);
+
+  const [editingSubjectId, setEditingSubjectId] = useState(null);
+
+  const addSubject = () => {
+      if (!newSubject.name.trim() || !newSubject.code.trim()) {
+        alert("Please enter subject name and code");
+        return;
+      }
+
+      if (editingSubjectId !== null) {
+        setSubjectList(
+          subjectList.map((subject) =>
+            subject.id === editingSubjectId
+              ? {
+                  ...subject,
+                  name: newSubject.name,
+                  code: newSubject.code,
+                }
+              : subject
+          )
+        );
+      } else {
+        const subject = {
+          id: Date.now(),
+          name: newSubject.name,
+          code: newSubject.code,
+        };
+
+        setSubjectList([...subjectList, subject]);
+      }
+
+      setNewSubject({
+        name: "",
+        code: "",
+      });
+
+      setEditingSubjectId(null);
+      setShowForm(false);
+    };
+
+const deleteSubject = (id) => {
+  setSubjectList(
+    subjectList.filter((subject) => subject.id !== id)
+  );
+};
+
+const editSubject = (id) => {
+  const subject = subjectList.find(
+    (subject) => subject.id === id
+  );
+
+  setNewSubject({
+    name: subject.name,
+    code: subject.code,
+  });
+
+  setEditingSubjectId(id);
+  setShowForm(true);
+};
+
   return (
-    <div>
+    <div  className="subjects-page">
       <h1>My Subjects</h1>
 
-      <div>
-        <h2>Data Structures</h2>
-        <p>DSA</p>
-      </div>
+      <button onClick={() => setShowForm(true)}>
+        Add Subject
+        </button>
 
-      <div>
-        <h2>Java Programming</h2>
-        <p>OOPS</p>
-      </div>
+    {showForm && (
+    <div className="subject-form">
+        <input
+        type="text"
+        placeholder="Subject name"
+        value={newSubject.name}
+        onChange={(e) =>
+          setNewSubject({
+            ...newSubject,
+            name: e.target.value,
+          })
+        }
+      />
+        <input
+        type="text"
+        placeholder="Subject code"
+        value={newSubject.code}
+        onChange={(e) =>
+          setNewSubject({
+            ...newSubject,
+            code: e.target.value,
+          })
+        }
+      />
 
-      <div>
-        <h2>Digital Logic Design</h2>
-        <p>DLD</p>
-      </div>
+        <button
+          className="form-submit-button"
+          onClick={addSubject}
+        >
+          {editingSubjectId !== null ? "Update Subject" : "Add Subject"}
+        </button>
 
-      <div>
-        <h2>Mathematics</h2>
-        <p>Mathematics</p>
+        <button
+          className="form-cancel-button"
+          onClick={() => {
+            setNewSubject({
+              name: "",
+              code: "",
+            });
+            setEditingSubjectId(null);
+            setShowForm(false);
+          }}
+        >
+          Cancel
+        </button>
       </div>
+    )}
+
+      {subjectList.map((subject) => (
+       <div className="subject-item" key={subject.id}>
+          <h2>{subject.name}</h2>
+          <p>{subject.code}</p>
+
+          <button
+           className="delete-button"
+            onClick={() => deleteSubject(subject.id)}>
+            Delete
+          </button>
+
+          <button 
+           className="edit-button"
+           onClick={() => editSubject(subject.id)}>
+            Edit
+          </button>
+
+        </div>
+      ))}
+     
     </div>
-  )
+  );
 }
 
 export default Subjects
