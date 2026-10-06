@@ -1,29 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./Subjects.css";
-const subjects = [
-  {
-    id: 1,
-    name: "Data Structures",
-    code: "DSA",
-  },
-  {
-    id: 2,
-    name: "Java Programming",
-    code: "OOPS",
-  },
-  {
-    id: 3,
-    name: "Digital Logic Design",
-    code: "DLD",
-  },
-  {
-    id: 4,
-    name: "Mathematics",
-    code: "Mathematics",
-  },
-];
+import { SubjectContext } from "../context/SubjectContext";
+
 function Subjects() {
-  const [subjectList, setSubjectList] = useState(subjects);
+  const { subjectList, setSubjectList } = useContext(SubjectContext);
 
   const [newSubject, setNewSubject] = useState({
   name: "",

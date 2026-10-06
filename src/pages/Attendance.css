@@ -1,0 +1,127 @@
+.attendance-page {
+  min-height: 100vh;
+  padding: 40px 50px;
+  background: #f6f7fb;
+  color: #111827;
+}
+
+.attendance-page h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.attendance-description {
+  margin-top: 8px;
+  margin-bottom: 30px;
+  color: #6b7280;
+  font-size: 15px;
+}
+.attendance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.attendance-card {
+  padding: 24px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.attendance-card:hover {
+  transform: translateY(-3px);
+  border-color: #d1d5db;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+.attendance-card h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 650;
+  color: #111827;
+}
+
+.attendance-card > p:first-of-type {
+  display: inline-block;
+  margin: 0 0 22px;
+  padding: 5px 10px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  color: #4b5563;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.attendance-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+
+  background: #fafafa;
+  color: #111827;
+  font-size: 14px;
+
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.attendance-card input:focus {
+  background: white;
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+}
+
+.attendance-card input::placeholder {
+  color: #9ca3af;
+}
+
+.attendance-card p:last-child {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+.attendance-percentage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 10px;
+  padding: 14px 16px;
+
+  background: #f3f4f6;
+  border-radius: 10px;
+}
+
+.attendance-percentage span {
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.attendance-percentage strong {
+  color: #111827;
+  font-size: 20px;
+  font-weight: 700;
+}
+@media (max-width: 700px) {
+  .attendance-page {
+    padding: 25px 20px;
+  }
+
+  .attendance-page h1 {
+    font-size: 28px;
+  }
+
+  .attendance-grid {
+    grid-template-columns: 1fr;
+  }
+}
