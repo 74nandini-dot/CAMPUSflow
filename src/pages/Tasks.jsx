@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./Tasks.css";
 import TaskCard from "../components/TaskCard";
+import { SubjectContext } from "../context/SubjectContext";
 
 const tasks = [
   {
@@ -27,6 +28,8 @@ const tasks = [
 ];
 
 function Tasks() {
+  const { subjectList } = useContext(SubjectContext);
+
   const [taskList, setTaskList] = useState(tasks);
 
   const [showForm, setShowForm] = useState(false);
@@ -127,14 +130,31 @@ const filteredTasks = taskList.filter((task) => {
 });
 
   return (
+
+   
     <div className="tasks-page">
       <h1>Tasks</h1>
       <p>Manage your academic tasks and assignments.</p>
 
-          <button onClick={() => setShowForm(!showForm)}>
-            {showForm ? "Cancel" : "Add Task"}
-          </button>
+          <button
+          onClick={() => {
+            if (showForm) {
+              setNewTask({
+                title: "",
+                subject: "",
+                dueDate: "",
+              });
+              setEditingTaskId(null);
+              setShowForm(false);
+            } else {
+              setShowForm(true);
+            }
+          }}
+        >
+          {showForm ? "Cancel" : "Add Task"}
+        </button>
 
+           {showForm &&(
           <div className="task-form">
             <input
               type="text"
@@ -148,9 +168,7 @@ const filteredTasks = taskList.filter((task) => {
               }
             />
 
-            <input
-              type="text"
-              placeholder="Subject"
+           <select
               value={newTask.subject}
               onChange={(e) =>
                 setNewTask({
@@ -158,7 +176,15 @@ const filteredTasks = taskList.filter((task) => {
                   subject: e.target.value,
                 })
               }
-            />
+            >
+              <option value="">Select subject</option>
+
+              {subjectList.map((subject) => (
+                <option key={subject.id} value={subject.name}>
+                  {subject.name}
+                </option>
+              ))}
+            </select>
 
             <input
               type="text"
@@ -171,9 +197,11 @@ const filteredTasks = taskList.filter((task) => {
                 })
               }
             />
-
-            <button onClick={addTask}>Add Task</button>
-          </div> 
+          <button onClick={addTask}>
+            {editingTaskId !== null ? "Update Task" : "Add Task"}
+          </button>
+                    </div> 
+            )}
     
         <div className="task-filters">
               <button onClick={() => setFilter("all")}>
