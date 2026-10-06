@@ -3,9 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Subjects from './pages/Subjects'
+import Attendance from './pages/Attendance'
+import { SubjectProvider } from './context/SubjectContext'
 
 function App() {
   return (
+    <SubjectProvider>
     <BrowserRouter>
       <Navbar />
 
@@ -24,8 +27,15 @@ function App() {
           path="/tasks"
           element={<Tasks />}
         />
+
+        <Route
+          path="/attendance"
+          element={<Attendance />}
+        />
+
       </Routes>
     </BrowserRouter>
+    </SubjectProvider>
   )
 }
 
