@@ -1,0 +1,229 @@
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 40px;
+
+  background: #ffffff;
+  border-bottom: 1px solid #e8edf5;
+
+  box-shadow: 0 3px 15px rgba(30, 64, 175, 0.05);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ================================
+   LOGO
+================================ */
+
+.navbar-logo {
+  display: flex;
+  align-items: baseline;
+
+  letter-spacing: -1px;
+  line-height: 1;
+
+  cursor: default;
+  user-select: none;
+}
+
+.logo-campus {
+  color: #172554;
+
+  font-size: 24px;
+  font-weight: 800;
+
+  letter-spacing: -1.3px;
+}
+
+.logo-flow {
+  position: relative;
+
+  margin-left: 2px;
+
+  color: #2563eb;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  letter-spacing: -1.3px;
+}
+
+/* Small accent */
+
+.logo-flow::after {
+  content: '';
+
+  position: absolute;
+
+  left: 1px;
+  right: 0;
+  bottom: -5px;
+
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #60a5fa;
+
+  transform: rotate(-2deg);
+}
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+}
+
+/* Individual links */
+
+.navbar-links a {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 15px;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+
+  color: #64748b;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Icons */
+
+.navbar-links a svg {
+  flex-shrink: 0;
+
+  transition: transform 0.2s ease;
+}
+
+/* Hover */
+
+.navbar-links a:hover {
+  color: #2563eb;
+
+  background: #f1f6ff;
+}
+
+.navbar-links a:hover svg {
+  transform: translateY(-1px);
+}
+
+/* Active */
+
+.navbar-links a.active {
+  color: #2563eb;
+
+  background: #eef5ff;
+
+  font-weight: 700;
+}
+
+/* Active icon */
+
+.navbar-links a.active svg {
+  stroke-width: 2.5;
+}
+
+/* Active bottom indicator */
+
+.navbar-links a.active::after {
+  content: '';
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 3px;
+
+  width: 18px;
+  height: 3px;
+
+  border-radius: 10px;
+
+  background: #2563eb;
+
+  transform: translateX(-50%);
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  .logo-campus,
+  .logo-flow {
+    font-size: 20px;
+  }
+
+  .navbar-links {
+    gap: 2px;
+  }
+
+  .navbar-links a {
+    padding: 8px 10px;
+
+    font-size: 13px;
+  }
+
+  .navbar-links a {
+    gap: 5px;
+  }
+
+}
+
+/* ================================
+   SMALL SCREEN
+================================ */
+
+@media (max-width: 560px) {
+
+  .navbar {
+    flex-direction: column;
+
+    gap: 14px;
+
+    padding: 16px;
+  }
+
+  .navbar-links {
+    width: 100%;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+  }
+
+  .navbar-links a {
+    padding: 8px 10px;
+  }
+
+}

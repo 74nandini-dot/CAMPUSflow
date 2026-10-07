@@ -1,279 +1,363 @@
+/* =========================================
+   SUBJECTS PAGE
+========================================= */
+
 .subjects-page {
-  min-height: 100vh;
-  padding: 40px 50px;
-  background: #f6f7fb;
-  color: #111827;
+  min-height: calc(100vh - 70px);
+  padding: 42px 48px 60px;
+
+  box-sizing: border-box;
+
+  background: #f8fafc;
 }
 
-/* ---------- HEADER ---------- */
+
+/* =========================================
+   PAGE HEADER
+========================================= */
 
 .subjects-page h1 {
-  margin: 0;
-  font-size: 34px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+  margin: 0 0 10px;
+
+  color: #172554;
+
+  font-size: 32px;
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
 }
 
 .subjects-page::before {
-  content: "Manage your subjects and keep your academic work organized.";
+  content: "SUBJECT MANAGEMENT";
+
   display: block;
-  margin-top: 8px;
-  margin-bottom: 28px;
-  color: #6b7280;
-  font-size: 15px;
+
+  margin-bottom: 8px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
 }
 
-/* ---------- ADD SUBJECT BUTTON ---------- */
+
+/* =========================================
+   ADD SUBJECT BUTTON
+========================================= */
 
 .subjects-page > button {
-  display: block;
-  margin-left: auto;
-  margin-bottom: 30px;
+  margin: 8px 0 30px;
 
   padding: 12px 20px;
 
   border: none;
-  border-radius: 10px;
+  border-radius: 11px;
 
-  background: #111827;
-  color: white;
+  background: #2563eb;
+  color: #ffffff;
 
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
 
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  box-shadow:
+    0 6px 16px rgba(37, 99, 235, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .subjects-page > button:hover {
-  background: #374151;
+  background: #1d4ed8;
+
   transform: translateY(-2px);
+
+  box-shadow:
+    0 9px 20px rgba(37, 99, 235, 0.22);
 }
 
-/* ---------- FORM ---------- */
+
+/* =========================================
+   SUBJECT FORM
+========================================= */
 
 .subject-form {
-  width: 100%;
-  max-width: 560px;
+  display: flex;
 
-  margin: 0 auto 35px;
+  flex-wrap: wrap;
 
-  padding: 28px;
+  gap: 12px;
 
-  background: white;
+  margin-bottom: 30px;
 
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
+  padding: 22px;
 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid #dbeafe;
 
-  box-sizing: border-box;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.05);
 }
 
 .subject-form input {
-  width: 100%;
-  box-sizing: border-box;
+  flex: 1;
+
+  min-width: 200px;
 
   padding: 13px 15px;
-  margin-bottom: 14px;
 
-  border: 1px solid #d1d5db;
-  border-radius: 9px;
+  border: 1px solid #dbe3ef;
 
-  background: #fafafa;
-
-  font-size: 14px;
-  color: #111827;
+  border-radius: 10px;
 
   outline: none;
 
-  transition: all 0.2s ease;
+  background: #f8fafc;
+
+  color: #172554;
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .subject-form input:focus {
-  background: white;
-  border-color: #111827;
-  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+  border-color: #93c5fd;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.08);
 }
 
 .subject-form input::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
-/* ---------- FORM BUTTONS ---------- */
 
-.subject-form button {
-  padding: 10px 18px;
+/* =========================================
+   FORM BUTTONS
+========================================= */
 
-  border: none;
-  border-radius: 8px;
+.form-submit-button,
+.form-cancel-button {
+  padding: 12px 18px;
 
-  font-size: 14px;
-  font-weight: 600;
+  border-radius: 10px;
+
+  font-size: 13px;
+
+  font-weight: 700;
 
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .form-submit-button {
-  background: #111827;
-  color: white;
+  border: none;
+
+  background: #2563eb;
+
+  color: #ffffff;
 }
 
 .form-submit-button:hover {
-  background: #374151;
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
 }
 
 .form-cancel-button {
-  margin-left: 8px;
+  border: 1px solid #dbe3ef;
 
-  background: #f3f4f6;
-  color: #374151;
+  background: #ffffff;
+
+  color: #64748b;
 }
 
 .form-cancel-button:hover {
-  background: #e5e7eb;
+  background: #f8fafc;
+
+  color: #334155;
 }
 
-/* ---------- SUBJECT GRID ---------- */
+
+/* =========================================
+   SUBJECT CARDS
+========================================= */
 
 .subject-item {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
   min-height: 150px;
+
+  margin-bottom: 18px;
 
   padding: 24px;
 
-  background: white;
-
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-
   box-sizing: border-box;
 
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+  border: 1px solid #dbeafe;
 
-  transition: all 0.2s ease;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 7px 22px rgba(15, 23, 42, 0.05);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
-/*
-  Make the subjects appear in a grid.
-*/
-.subjects-page {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
+.subject-item::before {
+  content: '';
 
-/*
-  Keep heading and Add button across the full width.
-*/
-.subjects-page h1 {
-  grid-column: 1 / -1;
-}
+  position: absolute;
 
-.subjects-page > button {
-  grid-column: 1 / -1;
-}
+  left: 0;
+  top: 0;
+  bottom: 0;
 
-.subject-form {
-  grid-column: 1 / -1;
+  width: 4px;
+
+  background: #2563eb;
 }
 
 .subject-item:hover {
   transform: translateY(-3px);
 
-  border-color: #d1d5db;
+  border-color: #bfdbfe;
 
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  box-shadow:
+    0 12px 28px rgba(37, 99, 235, 0.09);
 }
-
-/* ---------- SUBJECT NAME ---------- */
 
 .subject-item h2 {
-  margin: 0 0 10px;
+  margin: 0 0 7px;
 
-  font-size: 20px;
-  font-weight: 650;
+  color: #172554;
 
-  color: #111827;
+  font-size: 19px;
+
+  font-weight: 750;
 }
-
-/* ---------- SUBJECT CODE ---------- */
 
 .subject-item p {
-  display: inline-block;
+  margin: 0 0 20px;
 
-  margin: 0 0 25px;
-
-  padding: 5px 10px;
-
-  background: #f3f4f6;
-
-  border-radius: 6px;
-
-  color: #4b5563;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  letter-spacing: 0.3px;
-}
-
-/* ---------- CARD BUTTONS ---------- */
-
-.subject-item button {
-  padding: 9px 15px;
-
-  border: none;
-  border-radius: 8px;
+  color: #8ca0bb;
 
   font-size: 13px;
+
   font-weight: 600;
+}
+
+
+/* =========================================
+   SUBJECT ACTION BUTTONS
+========================================= */
+
+.edit-button,
+.delete-button {
+  position: absolute;
+
+  bottom: 20px;
+
+  padding: 8px 14px;
+
+  border-radius: 9px;
+
+  font-size: 12px;
+
+  font-weight: 700;
 
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .edit-button {
-  background: #111827;
-  color: white;
+  right: 92px;
+
+  border: 1px solid #dbeafe;
+
+  background: #eff6ff;
+
+  color: #2563eb;
 }
 
 .edit-button:hover {
-  background: #374151;
+  background: #dbeafe;
+
+  transform: translateY(-1px);
 }
 
 .delete-button {
-  margin-left: 8px;
+  right: 20px;
 
-  background: #fff1f2;
-  color: #be123c;
+  border: 1px solid #fee2e2;
+
+  background: #fff7f7;
+
+  color: #ef4444;
 }
 
 .delete-button:hover {
-  background: #ffe4e6;
+  background: #fee2e2;
+
+  transform: translateY(-1px);
 }
 
-/* ---------- MOBILE ---------- */
+
+/* =========================================
+   RESPONSIVE
+========================================= */
 
 @media (max-width: 700px) {
   .subjects-page {
-    padding: 25px 20px;
-    grid-template-columns: 1fr;
+    padding: 30px 20px 40px;
   }
 
   .subjects-page h1 {
-    font-size: 28px;
+    font-size: 27px;
   }
 
-  .subject-item {
-    grid-column: 1;
+  .subject-form {
+    flex-direction: column;
   }
 
-  .subjects-page > button {
-    margin-left: 0;
-    width: fit-content;
+  .subject-form input,
+  .form-submit-button,
+  .form-cancel-button {
+    width: 100%;
+    box-sizing: border-box;
   }
 }

@@ -1,46 +1,90 @@
-import { AttendanceProvider } from "./context/AttendanceContext";
+import { useState } from 'react'
+import './App.css'
+import { Menu } from 'lucide-react'
 import Tasks from './pages/Tasks'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Subjects from './pages/Subjects'
 import Attendance from './pages/Attendance'
 import { SubjectProvider } from './context/SubjectContext'
-import { TaskProvider } from "./context/TaskContext";
+import { TaskProvider } from './context/TaskContext'
+import { AttendanceProvider } from './context/AttendanceContext'
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  const toggleSidebar = () => {
+    setSidebarOpen((previous) => !previous)
+  }
+
   return (
     <SubjectProvider>
-    <TaskProvider>
-    <AttendanceProvider>
-    <BrowserRouter>
-      <Navbar />
+      <TaskProvider>
+        <AttendanceProvider>
+          <BrowserRouter>
 
-      <Routes>
-        <Route
-          path="/"
-          element={<Dashboard name="Nandini" semester="3rd Semester" />}
-        />
+            <Sidebar
+              isOpen={sidebarOpen}
+              onToggle={toggleSidebar}
+            />
 
-        <Route
-          path="/subjects"
-          element={<Subjects />}
-        />
+            {!sidebarOpen && (
+              <button
+                className="sidebar-show-button"
+                onClick={toggleSidebar}
+                aria-label="Show sidebar"
+              >
+                <Menu size={21} />
+              </button>
+            )}
 
-        <Route
-          path="/tasks"
-          element={<Tasks />}
-        />
+            <div
+              className={`app-main ${
+                sidebarOpen
+                  ? 'sidebar-is-open'
+                  : 'sidebar-is-closed'
+              }`}
+            >
+              <Navbar />
 
-        <Route
-          path="/attendance"
-          element={<Attendance />}
-        />
+              <main className="page-content">
+                <Routes>
 
-      </Routes>
-    </BrowserRouter>
-    </AttendanceProvider>
-    </TaskProvider>
+                  <Route
+                    path="/"
+                    element={
+                      <Dashboard
+                        name="Nandini"
+                        semester="3rd Semester"
+                      />
+                    }
+                  />
+
+                  <Route
+                    path="/subjects"
+                    element={<Subjects />}
+                  />
+
+                  <Route
+                    path="/tasks"
+                    element={<Tasks />}
+                  />
+
+                  <Route
+                    path="/attendance"
+                    element={<Attendance />}
+                  />
+
+                </Routes>
+              </main>
+
+            </div>
+
+          </BrowserRouter>
+        </AttendanceProvider>
+      </TaskProvider>
     </SubjectProvider>
   )
 }

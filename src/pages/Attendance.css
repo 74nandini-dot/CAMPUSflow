@@ -1,124 +1,279 @@
+/* =========================================
+   ATTENDANCE PAGE
+========================================= */
+
 .attendance-page {
-  min-height: 100vh;
-  padding: 40px 50px;
-  background: #f6f7fb;
-  color: #111827;
+  min-height: calc(100vh - 70px);
+
+  padding: 42px 48px 60px;
+
+  box-sizing: border-box;
+
+  background: #f8fafc;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.attendance-page::before {
+  content: "ATTENDANCE TRACKER";
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
 }
 
 .attendance-page h1 {
-  margin: 0;
-  font-size: 34px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+  margin: 0 0 9px;
+
+  color: #172554;
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
 }
 
 .attendance-description {
-  margin-top: 8px;
-  margin-bottom: 30px;
-  color: #6b7280;
+  margin: 0 0 32px;
+
+  color: #64748b;
+
   font-size: 15px;
-}
-.attendance-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+
+  line-height: 1.6;
 }
 
+
+/* =========================================
+   ATTENDANCE GRID
+========================================= */
+
+.attendance-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+
+/* =========================================
+   ATTENDANCE CARD
+========================================= */
+
 .attendance-card {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
   padding: 24px;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
-  transition: all 0.2s ease;
+
+  min-height: 275px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dbeafe;
+
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 7px 22px rgba(15, 23, 42, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.attendance-card::before {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background: #2563eb;
 }
 
 .attendance-card:hover {
   transform: translateY(-3px);
-  border-color: #d1d5db;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+
+  border-color: #bfdbfe;
+
+  box-shadow:
+    0 12px 28px rgba(37, 99, 235, 0.09);
 }
+
+
+/* =========================================
+   SUBJECT INFO
+========================================= */
 
 .attendance-card h2 {
-  margin: 0 0 8px;
-  font-size: 20px;
-  font-weight: 650;
-  color: #111827;
+  margin: 0 0 6px;
+
+  color: #172554;
+
+  font-size: 19px;
+
+  font-weight: 750;
 }
 
-.attendance-card > p:first-of-type {
-  display: inline-block;
-  margin: 0 0 22px;
-  padding: 5px 10px;
-  background: #f3f4f6;
-  border-radius: 6px;
-  color: #4b5563;
-  font-size: 12px;
+.attendance-card > p {
+  margin: 0 0 20px;
+
+  color: #8ca0bb;
+
+  font-size: 13px;
+
   font-weight: 600;
-  letter-spacing: 0.3px;
 }
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
 .attendance-card input {
   width: 100%;
-  padding: 12px 14px;
+
+  box-sizing: border-box;
+
   margin-bottom: 12px;
 
-  border: 1px solid #d1d5db;
-  border-radius: 9px;
+  padding: 12px 14px;
 
-  background: #fafafa;
-  color: #111827;
-  font-size: 14px;
+  border: 1px solid #dbe3ef;
+
+  border-radius: 10px;
 
   outline: none;
-  transition: all 0.2s ease;
+
+  background: #f8fafc;
+
+  color: #172554;
+
+  font-size: 13px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .attendance-card input:focus {
-  background: white;
-  border-color: #111827;
-  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+  border-color: #93c5fd;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.08);
 }
 
 .attendance-card input::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
-.attendance-card p:last-child {
-  margin-top: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #111827;
-}
+
+/* =========================================
+   PERCENTAGE
+========================================= */
+
 .attendance-percentage {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
-  margin-top: 10px;
-  padding: 14px 16px;
+  margin-top: auto;
 
-  background: #f3f4f6;
-  border-radius: 10px;
+  padding-top: 18px;
+
+  border-top: 1px solid #eef2f7;
 }
 
 .attendance-percentage span {
-  color: #6b7280;
+  color: #64748b;
+
   font-size: 13px;
+
   font-weight: 600;
 }
 
 .attendance-percentage strong {
-  color: #111827;
-  font-size: 20px;
-  font-weight: 700;
+  color: #2563eb;
+
+  font-size: 24px;
+
+  font-weight: 800;
 }
+
+
+/* =========================================
+   INVALID MESSAGE
+========================================= */
+
+.attendance-card > p:not(:first-of-type) {
+  margin-top: 5px;
+
+  padding: 10px 12px;
+
+  border-radius: 9px;
+
+  background: #fff7ed;
+
+  color: #ea580c;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .attendance-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 700px) {
   .attendance-page {
-    padding: 25px 20px;
+    padding: 30px 20px 40px;
   }
 
   .attendance-page h1 {
-    font-size: 28px;
+    font-size: 27px;
   }
 
   .attendance-grid {

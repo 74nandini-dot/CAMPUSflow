@@ -1,242 +1,271 @@
-import { useState, useContext } from "react";
-import "./Tasks.css";
-import TaskCard from "../components/TaskCard";
-import { SubjectContext } from "../context/SubjectContext";
-import { TaskContext } from "../context/TaskContext";
+import { useState, useContext } from 'react'
+import TaskCard from '../components/TaskCard'
+import './Tasks.css'
 
-const tasks = [
-  {
-    id: 1,
-    title: "DSA Assignment",
-    subject: "Data Structures",
-    dueDate: "Tomorrow",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "Cloud Computing Notes",
-    subject: "Cloud Computing",
-    dueDate: "Oct 5",
-    completed: true,
-  },
-  {
-    id: 3,
-    title: "React Project",
-    subject: "Web Development",
-    dueDate: "Oct 7",
-    completed: false,
-  },
-];
+import { SubjectContext } from '../context/SubjectContext'
+import { TaskContext } from '../context/TaskContext'
 
 function Tasks() {
-  const { subjectList } = useContext(SubjectContext);
+  const { subjectList } = useContext(SubjectContext)
+  const { taskList, setTaskList } = useContext(TaskContext)
 
-  const { taskList, setTaskList } = useContext(TaskContext);
-
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false)
 
   const [newTask, setNewTask] = useState({
-  title: "",
-  subject: "",
-  dueDate: "",
-});
-
-  const [editingTaskId, setEditingTaskId] = useState(null);
-
-  const [filter, setFilter] = useState("all");
+    title: '',
+    subject: '',
+    dueDate: '',
+  })
 
   const toggleTask = (id) => {
-  setTaskList(
-    taskList.map((task) =>
-      task.id === id
-        ? { ...task, completed: !task.completed }
-        : task
-    )
-  );
-};
-const addTask = () => {
-  if (
-    !newTask.title.trim() ||
-    !newTask.subject.trim() ||
-    !newTask.dueDate.trim()
-  ) {
-    alert("Please fill in all fields.");
-    return;
-  }
-
-  if (editingTaskId !== null) {
     setTaskList(
       taskList.map((task) =>
-        task.id === editingTaskId
+        task.id === id
           ? {
               ...task,
-              title: newTask.title,
-              subject: newTask.subject,
-              dueDate: newTask.dueDate,
+              completed: !task.completed,
             }
           : task
       )
-    );
-
-    setEditingTaskId(null);
-  } else {
-  const task = {
-    id: Date.now(),
-    title: newTask.title,
-    subject: newTask.subject,
-    dueDate: newTask.dueDate,
-    completed: false,
-  };
-
-  setTaskList([...taskList, task]);
-  }
-  setNewTask({
-    title: "",
-    subject: "",
-    dueDate: "",
-  });
-
-  setShowForm(false);
-};
-
-const deleteTask = (id) => {
-  setTaskList(
-    taskList.filter((task) => task.id !== id)
-  );
-};
-
-const editTask = (id) => {
-  const task = taskList.find((task) => task.id === id);
-
-  setNewTask({
-    title: task.title,
-    subject: task.subject,
-    dueDate: task.dueDate,
-  });
-
-  setEditingTaskId(id);
-  setShowForm(true);
-};
-
-const filteredTasks = taskList.filter((task) => {
-  if (filter === "pending") {
-    return !task.completed;
+    )
   }
 
-  if (filter === "completed") {
-    return task.completed;
+  const deleteTask = (id) => {
+    setTaskList(
+      taskList.filter((task) => task.id !== id)
+    )
   }
 
-  return true;
-});
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+
+    setNewTask({
+      ...newTask,
+      [name]: value,
+    })
+  }
+
+  const addTask = (e) => {
+    e.preventDefault()
+
+    if (
+      !newTask.title.trim() ||
+      !newTask.subject.trim() ||
+      !newTask.dueDate.trim()
+    ) {
+      return
+    }
+
+    const task = {
+      id: Date.now(),
+      title: newTask.title,
+      subject: newTask.subject,
+      dueDate: newTask.dueDate,
+      completed: false,
+    }
+
+    setTaskList([...taskList, task])
+
+    setNewTask({
+      title: '',
+      subject: '',
+      dueDate: '',
+    })
+
+    setShowForm(false)
+  }
+
+  const completedTasks = taskList.filter(
+    (task) => task.completed
+  ).length
+
+  const pendingTasks = taskList.filter(
+    (task) => !task.completed
+  ).length
 
   return (
-
-   
     <div className="tasks-page">
-      <h1>Tasks</h1>
-      <p>Manage your academic tasks and assignments.</p>
 
-          <button
-          onClick={() => {
-            if (showForm) {
-              setNewTask({
-                title: "",
-                subject: "",
-                dueDate: "",
-              });
-              setEditingTaskId(null);
-              setShowForm(false);
-            } else {
-              setShowForm(true);
-            }
-          }}
+      {/* Header */}
+      <div className="tasks-header">
+
+        <div>
+          <span className="tasks-label">
+            TASK MANAGEMENT
+          </span>
+
+          <h1>My Tasks</h1>
+
+          <p>
+            Keep track of your assignments, projects
+            and academic work.
+          </p>
+        </div>
+
+        <button
+          className="add-task-button"
+          onClick={() => setShowForm(!showForm)}
         >
-          {showForm ? "Cancel" : "Add Task"}
+          {showForm ? '× Close' : '+ Add Task'}
         </button>
 
-           {showForm &&(
-          <div className="task-form">
+      </div>
+
+
+      {/* Add Task Form */}
+      {showForm && (
+        <form
+          className="add-task-form"
+          onSubmit={addTask}
+        >
+
+          <div className="form-group">
+
+            <label>Task Title</label>
+
             <input
               type="text"
-              placeholder="Task title"
+              name="title"
+              placeholder="Enter task title"
               value={newTask.title}
-              onChange={(e) =>
-                setNewTask({
-                  ...newTask,
-                  title: e.target.value,
-                })
-              }
+              onChange={handleInputChange}
             />
 
-           <select
+          </div>
+
+
+          <div className="form-group">
+
+            <label>Subject</label>
+
+            <select
+              name="subject"
               value={newTask.subject}
-              onChange={(e) =>
-                setNewTask({
-                  ...newTask,
-                  subject: e.target.value,
-                })
-              }
+              onChange={handleInputChange}
             >
-              <option value="">Select subject</option>
+
+              <option value="">
+                Select subject
+              </option>
 
               {subjectList.map((subject) => (
-                <option key={subject.id} value={subject.name}>
+                <option
+                  key={subject.id}
+                  value={subject.name}
+                >
                   {subject.name}
                 </option>
               ))}
+
             </select>
 
+          </div>
+
+
+          <div className="form-group">
+
+            <label>Due Date</label>
+
             <input
-              type="date"
+              type="text"
+              name="dueDate"
+              placeholder="e.g. Tomorrow"
               value={newTask.dueDate}
-              onChange={(e) =>
-                setNewTask({
-                  ...newTask,
-                  dueDate: e.target.value,
-                })
-              }
+              onChange={handleInputChange}
             />
-          <button onClick={addTask}>
-            {editingTaskId !== null ? "Update Task" : "Add Task"}
+
+          </div>
+
+
+          <button
+            type="submit"
+            className="save-task-button"
+          >
+            Add Task
           </button>
-                    </div> 
-            )}
-    
-        <div className="task-filters">
-              <button onClick={() => setFilter("all")}>
-                All
-              </button>
 
-              <button onClick={() => setFilter("pending")}>
-                Pending
-              </button>
+        </form>
+      )}
 
-              <button onClick={() => setFilter("completed")}>
-                Completed
-              </button>
-            </div>
 
-        <div className="task-list">
-        <h2>All Tasks</h2>
+      {/* Summary */}
+      <div className="tasks-summary">
 
-      {filteredTasks.map((task) => (
-          <TaskCard
-            key={task.id}
-            title={task.title}
-            subject={task.subject}
-            dueDate={task.dueDate}
-            completed={task.completed}
-            onToggle={toggleTask}
-            taskId={task.id}
-            onDelete={deleteTask}
-            onEdit={editTask}
-          />
-        ))}
+        <div className="task-summary-card">
+          <span>Total Tasks</span>
+          <strong>{taskList.length}</strong>
+        </div>
+
+        <div className="task-summary-card">
+          <span>Completed</span>
+          <strong>{completedTasks}</strong>
+        </div>
+
+        <div className="task-summary-card">
+          <span>Pending</span>
+          <strong>{pendingTasks}</strong>
+        </div>
 
       </div>
+
+
+      {/* All Tasks */}
+      <section className="all-tasks">
+
+        <div className="section-heading">
+
+          <div>
+            <h2>All Tasks</h2>
+
+            <p>
+              Manage your academic tasks
+            </p>
+          </div>
+
+        </div>
+
+
+        <div className="tasks-grid">
+
+          {taskList.length > 0 ? (
+
+            taskList.map((task) => (
+
+              <TaskCard
+                key={task.id}
+                title={task.title}
+                subject={task.subject}
+                dueDate={task.dueDate}
+                completed={task.completed}
+                taskId={task.id}
+                onToggle={toggleTask}
+                onDelete={deleteTask}
+              />
+
+            ))
+
+          ) : (
+
+            <div className="empty-tasks">
+
+              <div>✓</div>
+
+              <h3>No tasks left</h3>
+
+              <p>
+                You are all caught up!
+              </p>
+
+            </div>
+
+          )}
+
+        </div>
+
+      </section>
+
     </div>
-  );
+  )
 }
 
-export default Tasks;
+export default Tasks
