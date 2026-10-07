@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import "./Tasks.css";
 import TaskCard from "../components/TaskCard";
 import { SubjectContext } from "../context/SubjectContext";
+import { TaskContext } from "../context/TaskContext";
 
 const tasks = [
   {
@@ -30,7 +31,7 @@ const tasks = [
 function Tasks() {
   const { subjectList } = useContext(SubjectContext);
 
-  const [taskList, setTaskList] = useState(tasks);
+  const { taskList, setTaskList } = useContext(TaskContext);
 
   const [showForm, setShowForm] = useState(false);
 
@@ -187,8 +188,7 @@ const filteredTasks = taskList.filter((task) => {
             </select>
 
             <input
-              type="text"
-              placeholder="Due date"
+              type="date"
               value={newTask.dueDate}
               onChange={(e) =>
                 setNewTask({

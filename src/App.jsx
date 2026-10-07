@@ -1,3 +1,4 @@
+import { AttendanceProvider } from "./context/AttendanceContext";
 import Tasks from './pages/Tasks'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
@@ -5,10 +6,13 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Subjects from './pages/Subjects'
 import Attendance from './pages/Attendance'
 import { SubjectProvider } from './context/SubjectContext'
+import { TaskProvider } from "./context/TaskContext";
 
 function App() {
   return (
     <SubjectProvider>
+    <TaskProvider>
+    <AttendanceProvider>
     <BrowserRouter>
       <Navbar />
 
@@ -35,6 +39,8 @@ function App() {
 
       </Routes>
     </BrowserRouter>
+    </AttendanceProvider>
+    </TaskProvider>
     </SubjectProvider>
   )
 }
