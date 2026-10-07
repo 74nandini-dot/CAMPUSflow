@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import { TaskContext } from "../../context/TaskContext";
+import { AttendanceContext } from "../../context/AttendanceContext";
+import { SubjectContext } from "../../context/SubjectContext";
 import "./Dashboard.css";
 import TaskCard from "../../components/TaskCard";
 import DashboardHeader from "../../components/Dashboard/DashboardHeader/DashboardHeader";
@@ -7,7 +11,37 @@ import AttendanceCard from "../../components/AttendanceCard";
 
 
 function Dashboard() {
-  return (
+    const { taskList } = useContext(TaskContext);
+
+    const { subjectList } = useContext(SubjectContext);
+
+    const { attendance } = useContext(AttendanceContext);
+
+    const totalTasks = taskList.length;
+
+    const completedTasks = taskList.filter(
+      (task) => task.completed
+    ).length;
+
+    const pendingTasks = taskList.filter(
+      (task) => !task.completed
+    ).length;
+
+    const today = new Date();
+
+    const dueSoonTasks = taskList.filter((task) => {
+      if (task.completed) return false;
+
+      const dueDate = new Date(task.dueDate);
+
+      const difference =
+        (dueDate - today) / (1000 * 60 * 60 * 24);
+
+      return difference >= 0 && difference <= 3;
+    });
+
+
+    return (
     <div className="dashboard">
 
       {/* Dashboard Header */}
@@ -15,10 +49,10 @@ function Dashboard() {
 
       {/* Overview Cards */}
       <section className="overview">
-        <StatCard number="12" title="Total Tasks" />
-        <StatCard number="7" title="Completed" />
-        <StatCard number="5" title="Pending" />
-        <StatCard number="3" title="Due Soon" />
+        <StatCard number={totalTasks} title="Total Tasks" />
+        <StatCard number={completedTasks} title="Completed" />
+        <StatCard number={pendingTasks} title="Pending" />
+        <StatCard number={dueSoonTasks.length} title="Due Soon" />
       </section>
 
 
@@ -26,23 +60,20 @@ function Dashboard() {
       <h2>Upcoming Tasks</h2>
 
       <div className="task-list">
+      {taskList
+      .filter((task) => !task.completed)
+      .slice(0, 3)
+      .map((task) => (
         <TaskCard
-          title="DSA Assignment"
-          subject="Data Structures"
-          dueDate="Tomorrow"
-        />
-
-        <TaskCard
-          title="Cloud Computing Notes"
-          subject="Cloud Computing"
-          dueDate="Oct 5"
-        />
-
-        <TaskCard
-          title="React Project"
-          subject="Web Development"
-          dueDate="Oct 7"
-        />
+          key={task.id}
+          title={task.title}
+          subject={task.subject}
+         dueDate={new Date(task.dueDate).toLocaleDateString("en-IN", {
+          day: "numeric",
+          month: "short",
+        })}
+      />
+      ))}
        </div>
       </section>
 
@@ -51,46 +82,62 @@ function Dashboard() {
           <h2>Your Subjects</h2>
 
           <div className="subject-list">
-            <SubjectCard
-              name="Data Structures"
-              teacher="Dr. Sharma"
-              attendance={82}
-            />
+           {subjectList.map((subject) => {
+              const subjectAttendance = attendance[subject.id] || {
+                total: "",
+                attended: "",
+              };
 
-            <SubjectCard
-              name="Cloud Computing"
-              teacher="Prof. Verma"
-              attendance={76}
-            />
+              const total = Number(subjectAttendance.total);
+              const attended = Number(subjectAttendance.attended);
 
-            <SubjectCard
-              name="Machine Learning"
-              teacher="Dr. Patel"
-              attendance={89}
-            />
-          </div>
+              const percentage =
+                total > 0 && attended <= total
+                  ? (attended / total) * 100
+                  : 0;
+
+              return (
+                <SubjectCard
+                  key={subject.id}
+                  name={subject.name}
+                  teacher={subject.teacher || "Teacher not added"}
+                  attendance={percentage.toFixed(2)}
+                />
+              );
+            })}
+            </div>
         </section>
 
           {/* Attendance */}
         <section className="attendance">
           <h2>Attendance Overview</h2>
 
-          <div className="attendance-list">
-            <AttendanceCard
-              subject="Data Structures"
-              percentage={82}
-            />
+          
+            <div className="attendance-list">
+            {subjectList.map((subject) => {
+              const subjectAttendance = attendance[subject.id] || {
+                total: "",
+                attended: "",
+              };
 
-            <AttendanceCard
-              subject="Cloud Computing"
-              percentage={76}
-            />
+              const total = Number(subjectAttendance.total);
+              const attended = Number(subjectAttendance.attended);
 
-            <AttendanceCard
-              subject="Machine Learning"
-              percentage={89}
-            />
+              const percentage =
+                total > 0 && attended <= total
+                  ? (attended / total) * 100
+                  : 0;
+
+              return (
+                <AttendanceCard
+                  key={subject.id}
+                  subject={subject.name}
+                  percentage={percentage.toFixed(2)}
+                />
+              );
+            })}
           </div>
+          
         </section>
 
     </div>

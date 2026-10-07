@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
 import "./Attendance.css";
 import { SubjectContext } from "../context/SubjectContext";
+import { AttendanceContext } from "../context/AttendanceContext";
 
 function Attendance() {
     const { subjectList } = useContext(SubjectContext);
 
-  const [attendance, setAttendance] = useState({});
+    const { attendance, setAttendance } = useContext(AttendanceContext);
 
   return (
     <div className="attendance-page">
