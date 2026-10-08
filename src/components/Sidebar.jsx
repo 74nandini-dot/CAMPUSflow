@@ -4,6 +4,7 @@ import {
   BookOpen,
   CheckSquare,
   CalendarCheck,
+  Briefcase,
   TrendingUp,
   Settings,
   ArrowLeftToLine,
@@ -66,6 +67,11 @@ function Sidebar({ isOpen, onToggle }) {
           <NavLink to="/attendance">
             <CalendarCheck size={18} />
             {isOpen && <span>Attendance</span>}
+          </NavLink>
+
+          <NavLink to="/placement">
+            <Briefcase size={18} />
+            {isOpen && <span>Placement</span>}
           </NavLink>
 
           <NavLink to="/progress">

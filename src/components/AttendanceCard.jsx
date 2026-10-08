@@ -1,4 +1,4 @@
-function AttendanceCard({ subject, percentage }) {
+function AttendanceCard({ subject, percentage, onClick }) {
   const getStatus = () => {
     if (percentage >= 85) {
       return "Excellent";
@@ -12,7 +12,7 @@ function AttendanceCard({ subject, percentage }) {
   };
 
   return (
-    <div className="attendance-card">
+    <div className="attendance-card" onClick={onClick}>
       <div className="attendance-card-header">
         <div>
           <h3>{subject}</h3>

@@ -1,6 +1,7 @@
-function SubjectCard({ name, teacher, attendance }) {
+function SubjectCard({ name, teacher, attendance, onClick, }) {
   return (
-    <div className="subject-card">
+    <div className="subject-card"
+    onClick={onClick}>
       <div className="subject-top">
         <div className="subject-icon">
           {name.charAt(0)}

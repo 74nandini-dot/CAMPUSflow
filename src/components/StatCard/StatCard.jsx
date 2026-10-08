@@ -1,4 +1,4 @@
-function StatCard({ number, title }) {
+function StatCard({ number, title, onClick }) {
   const cardType = title.toLowerCase().replace(/\s+/g, '-');
 
   const icons = {
@@ -9,7 +9,8 @@ function StatCard({ number, title }) {
   };
 
   return (
-    <div className={`stat-card stat-${cardType}`}>
+    <div className={`stat-card stat-${cardType}`}
+    onClick={onClick}>
       <div className="stat-icon">
         {icons[cardType] || '•'}
       </div>

@@ -8,12 +8,14 @@ import Sidebar from './components/Sidebar'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Subjects from './pages/Subjects'
 import Attendance from './pages/Attendance'
+import Placement from './pages/placement'
 import { SubjectProvider } from './context/SubjectContext'
 import { TaskProvider } from './context/TaskContext'
 import { AttendanceProvider } from './context/AttendanceContext'
 
+
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const toggleSidebar = () => {
     setSidebarOpen((previous) => !previous)
@@ -75,6 +77,11 @@ function App() {
                   <Route
                     path="/attendance"
                     element={<Attendance />}
+                  />
+
+                  <Route
+                    path="/placement"
+                    element={<Placement />}
                   />
 
                 </Routes>

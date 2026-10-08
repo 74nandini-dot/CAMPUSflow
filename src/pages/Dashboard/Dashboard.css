@@ -873,3 +873,10 @@
 
   transform: translate(0) rotate(0);
 }
+/* Clickable dashboard cards */
+.stat-card,
+.task-card,
+.subject-card,
+.attendance-card {
+  cursor: pointer;
+}

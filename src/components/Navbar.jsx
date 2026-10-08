@@ -4,6 +4,7 @@ import {
   BookOpen,
   CheckSquare,
   CalendarCheck,
+  Briefcase,
 } from 'lucide-react'
 import './Navbar.css'
 
@@ -12,10 +13,10 @@ function Navbar() {
     <nav className="navbar">
 
       {/* LOGO */}
-      <div className="navbar-logo">
+      <NavLink to="/" className="navbar-logo">
         <span className="logo-campus">CAMPUS</span>
         <span className="logo-flow">Flow</span>
-      </div>
+      </NavLink>
 
       {/* NAVIGATION */}
       <div className="navbar-links">
@@ -38,6 +39,11 @@ function Navbar() {
         <NavLink to="/attendance">
           <CalendarCheck size={17} strokeWidth={2.2} />
           <span>Attendance</span>
+        </NavLink>
+
+        <NavLink to="/placement">
+          <Briefcase size={17} strokeWidth={2.2} />
+          <span>Placement</span>
         </NavLink>
 
       </div>

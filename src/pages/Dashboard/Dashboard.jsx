@@ -1,5 +1,5 @@
+import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
-
 import { TaskContext } from '../../context/TaskContext'
 import { AttendanceContext } from '../../context/AttendanceContext'
 import { SubjectContext } from '../../context/SubjectContext'
@@ -13,6 +13,7 @@ import SubjectCard from '../../components/SubjectCard'
 import AttendanceCard from '../../components/AttendanceCard'
 
 function Dashboard() {
+  const navigate = useNavigate()
   const { taskList } = useContext(TaskContext)
   const { subjectList } = useContext(SubjectContext)
   const { attendance } = useContext(AttendanceContext)
@@ -56,21 +57,25 @@ function Dashboard() {
         <StatCard
           number={totalTasks}
           title="Total Tasks"
+          onClick={() => navigate('/tasks')}
         />
 
         <StatCard
           number={completedTasks}
           title="Completed"
+          onClick={() => navigate('/tasks')}
         />
 
         <StatCard
           number={pendingTasks}
           title="Pending"
+          onClick={() => navigate('/tasks')}
         />
 
         <StatCard
           number={dueSoonTasks.length}
           title="Due Soon"
+          onClick={() => navigate('/tasks')}
         />
 
       </section>
@@ -103,6 +108,7 @@ function Dashboard() {
                 }
                 completed={task.completed}
                 taskId={task.id}
+                 onClick={() => navigate('/tasks')}
               />
             ))}
 
@@ -153,11 +159,9 @@ function Dashboard() {
               <SubjectCard
                 key={subject.id}
                 name={subject.name}
-                teacher={
-                  subject.teacher ||
-                  'Teacher not added'
-                }
+                teacher={subject.teacher || 'Teacher not added' }
                 attendance={percentage.toFixed(2)}
+                onClick={() => navigate('/subjects')}
               />
             )
           })}
@@ -198,6 +202,7 @@ function Dashboard() {
                 key={subject.id}
                 subject={subject.name}
                 percentage={percentage.toFixed(2)}
+                onClick={() => navigate('/attendance')}
               />
             )
           })}

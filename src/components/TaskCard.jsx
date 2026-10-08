@@ -7,13 +7,14 @@ function TaskCard({
   taskId,
   onDelete,
   onEdit,
+  onClick,
 }) {
   return (
-    <div className={`task-card ${completed ? "completed" : "pending"}`}>
-
+    <div className={`task-card ${completed ? "completed" : "pending"}`}
+      onClick={onClick}>
       <div className="task-card-top">
         <div className="task-icon">
-          ✓
+          {completed ? "✓" : "○"}
         </div>
 
         <span className={`task-status ${completed ? "done" : "waiting"}`}>
@@ -35,6 +36,28 @@ function TaskCard({
         <span className="task-arrow">→</span>
       </div>
 
+      <div className="task-card-actions">
+        <button
+          type="button"
+          onClick={() => onToggle?.(taskId)}
+        >
+          {completed ? "Mark Pending" : "Mark Complete"}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => onEdit?.(taskId)}
+        >
+          Edit
+        </button>
+
+        <button
+          type="button"
+          onClick={() => onDelete?.(taskId)}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 }

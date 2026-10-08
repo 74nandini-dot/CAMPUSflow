@@ -1,0 +1,300 @@
+/* ================================
+   PLACEMENT PAGE
+================================ */
+.placement-page {
+  min-height: calc(100vh - 70px);
+  padding: 42px 48px 60px;
+  box-sizing: border-box;
+  background: #f8fafc;
+}
+
+.placement-page h1 {
+  margin: 0 0 8px;
+  color: #172b4d;
+  font-size: 30px;
+}
+
+.placement-page > p {
+  margin: 0 0 28px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+
+/* ================================
+   PLACEMENT OVERVIEW
+================================ */
+
+.placement-overview {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.placement-stat {
+  background: white;
+  padding: 20px;
+  border: 1px solid #e5e9f0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(23, 43, 77, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.placement-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(23, 43, 77, 0.08);
+}
+
+.placement-stat h2 {
+  margin: 0 0 6px;
+  color: #172b4d;
+  font-size: 28px;
+}
+
+.placement-stat p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+
+/* ================================
+   UPCOMING DRIVES
+================================ */
+
+.upcoming-drives {
+  margin-bottom: 32px;
+}
+
+.upcoming-drives h2 {
+  margin: 0 0 6px;
+  color: #172b4d;
+  font-size: 22px;
+}
+
+.upcoming-drives > p {
+  margin: 0 0 16px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.upcoming-drive-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.upcoming-drive {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e5e9f0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(23, 43, 77, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upcoming-drive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(23, 43, 77, 0.08);
+}
+
+.upcoming-drive h3 {
+  margin: 0 0 8px;
+  color: #172b4d;
+  font-size: 18px;
+}
+
+.upcoming-drive p {
+  margin: 6px 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+
+/* ================================
+   PLACEMENT CARDS
+================================ */
+
+.placement-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.placement-card {
+  padding: 24px;
+  background: white;
+  border: 1px solid #e5e9f0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(23, 43, 77, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.placement-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(23, 43, 77, 0.08);
+}
+
+.placement-card h2 {
+  margin: 0 0 10px;
+  color: #172b4d;
+  font-size: 21px;
+}
+
+.placement-card p {
+  margin: 8px 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.placement-card strong {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Status colors */
+
+.status-open {
+  background: #eef4ff;
+  color: #315efb;
+}
+
+.status-applied {
+  background: #eaf4ff;
+  color: #2878d8;
+}
+
+.status-interview {
+  background: #fff4df;
+  color: #c47a00;
+}
+
+.status-selected {
+  background: #e9f8ef;
+  color: #218a4a;
+}
+
+.status-rejected {
+  background: #fdecec;
+  color: #d64545;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.placement-card button {
+  margin-top: 16px;
+  margin-right: 8px;
+  padding: 9px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #315efb;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.placement-card button:hover {
+  background: #244bd1;
+  transform: translateY(-1px);
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+  .placement-overview {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .placement-page {
+    padding: 20px;
+  }
+
+  .placement-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .upcoming-drive-list,
+  .placement-list {
+    grid-template-columns: 1fr;
+  }
+}
+/* ================================
+   MY APPLICATIONS
+================================ */
+
+.my-applications {
+  margin-bottom: 32px;
+}
+
+.my-applications h2 {
+  margin: 0 0 6px;
+  color: #172b4d;
+  font-size: 22px;
+}
+
+.my-applications > p {
+  margin: 0 0 16px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.application-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.application-card {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e5e9f0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(23, 43, 77, 0.05);
+}
+
+.application-card h3 {
+  margin: 0 0 8px;
+  color: #172b4d;
+  font-size: 18px;
+}
+
+.application-card p {
+  margin: 6px 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.application-card strong {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #eef4ff;
+  color: #315efb;
+  font-size: 13px;
+}
+
+.available-opportunities h2 {
+  margin: 0 0 10px;
+  color: #172b4d;
+  font-size: 22px;
+}
+
+.available-opportunities > p {
+  margin: 0 0 24px;
+  color: #6b7280;
+  font-size: 14px;
+}

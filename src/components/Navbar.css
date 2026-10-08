@@ -227,3 +227,7 @@
   }
 
 }
+.navbar-logo {
+  text-decoration: none;
+  color: inherit;
+}
