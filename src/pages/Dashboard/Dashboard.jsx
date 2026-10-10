@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { TaskContext } from '../../context/TaskContext'
 import { AttendanceContext } from '../../context/AttendanceContext'
 import { SubjectContext } from '../../context/SubjectContext'
+import { PlacementContext } from '../../context/PlacementContext'
 
 import './Dashboard.css'
 
@@ -17,6 +18,28 @@ function Dashboard() {
   const { taskList } = useContext(TaskContext)
   const { subjectList } = useContext(SubjectContext)
   const { attendance } = useContext(AttendanceContext)
+
+  const { placements } = useContext(PlacementContext)
+
+const totalDrives = placements.length
+
+
+const appliedCount = placements.filter(
+  (placement) =>
+    placement.hasApplied ||
+    ['Applied', 'Interview', 'Selected', 'Rejected'].includes(placement.status)
+).length
+
+const interviewCount = placements.filter(
+  (placement) =>
+    placement.hasInterviewed ||
+    ['Interview', 'Selected', 'Rejected'].includes(placement.status)
+).length
+
+const selectedCount = placements.filter(
+  (placement) => placement.status === 'Selected'
+).length
+
 
   const totalTasks = taskList.length
 
@@ -208,8 +231,60 @@ function Dashboard() {
           })}
 
         </div>
-
       </section>
+
+            {/* Placement Overview */}
+            <section className="dashboard-placement">
+              <div className="placement-heading">
+                <div>
+                  <h2>Placement Overview</h2>
+                  <p>Track your placement journey and opportunities.</p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => navigate('/placement')}
+                >
+                  View Placements →
+                </button>
+              </div>
+
+              
+            <div className="dashboard-placement-stats">
+              <div className="dashboard-placement-stat">
+                <h3>{totalDrives}</h3>
+                <p>Total Drives</p>
+              </div>
+
+              <div className="dashboard-placement-stat">
+                <h3>{appliedCount}</h3>
+                <p>Applied</p>
+              </div>
+
+              <div className="dashboard-placement-stat">
+                <h3>{interviewCount}</h3>
+                <p>Interviews</p>
+              </div>
+
+              <div className="dashboard-placement-stat">
+                <h3>{selectedCount}</h3>
+                <p>Selected</p>
+              </div>
+            </div>
+
+
+              <div className="dashboard-placement-card">
+                <div className="placement-icon">💼</div>
+                <div>
+                  <h3>Ready for your next opportunity?</h3>
+                  <p>
+                    Explore company drives, track applications, and monitor
+                    your placement progress.
+                  </p>
+                </div>
+              </div>
+            </section>
+      
 
     </div>
   )

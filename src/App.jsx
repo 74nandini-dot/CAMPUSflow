@@ -12,6 +12,7 @@ import Placement from './pages/placement'
 import { SubjectProvider } from './context/SubjectContext'
 import { TaskProvider } from './context/TaskContext'
 import { AttendanceProvider } from './context/AttendanceContext'
+import { PlacementProvider } from './context/PlacementContext'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   }
 
   return (
+    <PlacementProvider>
     <SubjectProvider>
       <TaskProvider>
         <AttendanceProvider>
@@ -93,6 +95,7 @@ function App() {
         </AttendanceProvider>
       </TaskProvider>
     </SubjectProvider>
+    </PlacementProvider>
   )
 }
 

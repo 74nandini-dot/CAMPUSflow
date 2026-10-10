@@ -880,3 +880,108 @@
 .attendance-card {
   cursor: pointer;
 }
+
+/* Placement Overview */
+.dashboard-placement {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 32px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(31, 65, 114, 0.06);
+}
+
+.dashboard-placement .placement-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.dashboard-placement .placement-heading h2 {
+  margin: 0 0 6px;
+  color: #10264f;
+  font-size: 22px;
+}
+
+.dashboard-placement .placement-heading p {
+  margin: 0;
+  color: #71809c;
+  font-size: 14px;
+}
+
+.dashboard-placement .placement-heading button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dashboard-placement-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.dashboard-placement-stat {
+  min-width: 0;
+  padding: 20px;
+  background: #f5f8ff;
+  border: 1px solid #e5edff;
+  border-radius: 12px;
+}
+
+.dashboard-placement-stat h3 {
+  margin: 0 0 8px;
+  color: #2563eb;
+  font-size: 28px;
+}
+
+.dashboard-placement-stat p {
+  margin: 0;
+  color: #63718b;
+  font-size: 14px;
+}
+
+.dashboard-placement-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.dashboard-placement-card h3 {
+  margin: 0 0 6px;
+  color: #10264f;
+}
+
+.dashboard-placement-card p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.placement-icon {
+  font-size: 32px;
+}
+
+@media (max-width: 700px) {
+  .dashboard-placement-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-placement .placement-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

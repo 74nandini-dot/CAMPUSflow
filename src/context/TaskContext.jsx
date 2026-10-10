@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const initialTasks = [
   {
@@ -27,7 +27,20 @@ const initialTasks = [
 export const TaskContext = createContext();
 
 export function TaskProvider({ children }) {
-  const [taskList, setTaskList] = useState(initialTasks);
+ const [taskList, setTaskList] = useState(() => {
+  try {
+    const savedTasks = localStorage.getItem("tasks");
+
+    return savedTasks ? JSON.parse(savedTasks) : initialTasks;
+  } catch (error) {
+    console.error("Failed to load tasks:", error);
+    return initialTasks;
+  }
+});
+
+  useEffect(() => {
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+}, [taskList]);
 
   return (
     <TaskContext.Provider

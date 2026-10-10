@@ -1,54 +1,44 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import { PlacementContext } from '../context/PlacementContext'
 import './placement.css'
 function Placement() {
-  const [placements, setPlacements] = useState([
-    {
-      id: 1,
-      company: "TCS",
-      role: "Software Developer",
-      package: "7 LPA",
-      driveDate: "2026-10-15",
-      eligibility: "CGPA 6.5+",
-      status: "Open",
-    },
-    {
-      id: 2,
-      company: "Accenture",
-      role: "Associate Software Engineer",
-      package: "6.5 LPA",
-      driveDate: "2026-10-18",
-      eligibility: "CGPA 6.0+",
-      status: "Open",
-    },
-  ])
+  const { placements, setPlacements } = useContext(PlacementContext)
 
-  const handleStatusChange = (id, newStatus) => {
-  setPlacements(
-    placements.map((placement) =>
-      placement.id === id
-        ? { ...placement, status: newStatus }
-        : placement
-    )
+  
+const handleStatusChange = (id, newStatus) => {
+  setPlacements((currentPlacements) =>
+    currentPlacements.map((placement) => {
+      if (placement.id !== id) return placement
+
+      return {
+        ...placement,
+        status: newStatus,
+        hasApplied: placement.hasApplied || newStatus === 'Applied' || newStatus === 'Interview' || newStatus === 'Selected' || newStatus === 'Rejected',
+        hasInterviewed: placement.hasInterviewed || newStatus === 'Interview' || newStatus === 'Selected' || newStatus === 'Rejected',
+      }
+    })
   )
 }
 
     const totalDrives = placements.length;
 
-    const appliedCount = placements.filter(
-    (placement) => placement.status === "Applied"
-    ).length;
 
-    const interviewCount = placements.filter(
-    (placement) => placement.status === "Interview"
-    ).length;
-
-    const selectedCount = placements.filter(
-    (placement) => placement.status === "Selected"
-    ).length;
-
-    const rejectedCount = placements.filter(
-  (placement) => placement.status === "Rejected"
+const appliedCount = placements.filter(
+  (placement) => placement.hasApplied || ['Applied', 'Interview', 'Selected', 'Rejected'].includes(placement.status)
 ).length
+
+const interviewCount = placements.filter(
+  (placement) => placement.hasInterviewed || ['Interview', 'Selected', 'Rejected'].includes(placement.status)
+).length
+
+const selectedCount = placements.filter(
+  (placement) => placement.status === 'Selected'
+).length
+
+const rejectedCount = placements.filter(
+  (placement) => placement.status === 'Rejected'
+).length
+
 
   return (
     <div className="placement-page">
